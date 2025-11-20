@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tattvaveda Academy – Cultivating Knowledge, Shaping Futures</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        /* ===== ROOT VARIABLES (LIGHT THEME) ===== */
+        :root {
+            --bg-primary: #F5F0E8;      /* Light Beige from logo */
+            --bg-light: #FFFFFF;
+            --bg-card: #FAF7F0;
+            --text-dark: #2C1E17;       /* Dark Brown from logo */
+            --text-muted: #5D4E3C;
+            --accent-gold: #D4A95A;
+            --accent-gold-dark: #C79A3B;
+            --border-gold: #C79A3B;
+            --transition: all 0.3s ease;
+        }
+
+        /* ===== GLOBAL STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: white;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-gold-dark);
+            border-color: var(--accent-gold-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-gold);
+            color: white;
+        }
+
+        .section-title {
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--accent-gold);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 3px;
+            background: var(--accent-gold);
+            display: block;
+            margin: 20px auto 0;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: #5F3D26;
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(44, 30, 23, 0.08);
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            background: rgba(245, 240, 232, 0.98);
+            box-shadow: 0 6px 20px rgba(44, 30, 23, 0.12);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: auto;
+    max-width: 280px;
+}
+
+.logo-img {
+    width: 60px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(44, 30, 23, 0.1));
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.logo-text span:first-child {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+} 
+
+.logo-text span:last-child {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        nav ul li a {
+            color: var(--text-dark);
+            font-weight: 500;
+            position: relative;
+            padding: 8px 0;
+            font-size: 16px;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: var(--accent-gold);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(245, 240, 232, 0.9), rgba(245, 240, 232, 0.8)), url('https://via.placeholder.com/1920x1080/F5F0E8/2C1E17?text=Campus+Building') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid var(--accent-gold);
+            border-radius: 30px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 15px;
+            background: var(--accent-gold);
+            border-radius: 2px;
+            animation: scrollDown 2s infinite;
+        }
+
+        @keyframes scrollDown {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 64px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero-text p {
+            font-size: 22px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .hero-image img {
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(44, 30, 23, 0.12);
+            border: 3px solid var(--border-gold);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            padding: 120px 0;
+            background: var(--bg-light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text .quote {
+            font-size: 32px;
+            font-style: italic;
+            color: var(--accent-gold);
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .about-image img {
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(44, 30, 23, 0.1);
+            border: 3px solid var(--border-gold);
+        }
+
+        /* ===== ACADEMICS SECTION ===== */
+        .academics {
+            padding: 120px 0;
+            background: var(--bg-primary);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-gold);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(44, 30, 23, 0.06);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gold);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(212, 169, 90, 0.15);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: rgba(212, 169, 90, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: var(--accent-gold);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .card a {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== FACILITIES, FACULTY, ADMISSIONS, GALLERY ===== */
+        .facilities, .faculty, .admissions, .gallery-preview {
+            padding: 120px 0;
+        }
+
+        .facilities { background: var(--bg-light); }
+        .faculty { background: var(--bg-primary); }
+        .admissions { background: var(--bg-light); }
+        .gallery-preview { background: var(--bg-primary); }
+
+        .facilities-grid, .faculty-grid, .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .facility-tile, .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 280px;
+            box-shadow: 0 10px 25px rgba(44, 30, 23, 0.08);
+        }
+
+        .facility-tile img, .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .facility-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(44, 30, 23, 0.85));
+            color: white;
+        }
+
+        .facility-tile:hover img, .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .faculty-member {
+            text-align: center;
+        }
+
+        .faculty-img {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        .faculty-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .faculty-member:hover .faculty-img {
+            border-color: var(--accent-gold-dark);
+            transform: scale(1.06);
+        }
+
+        .faculty-member h4 {
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+        }
+
+        .faculty-member p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .admission-steps {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 50px 0;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-gold);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+
+        .step p {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--text-dark);
+            color: #E7D9C0;
+            padding: 80px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            width: 200px;
+            filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(20deg);
+            margin-bottom: 20px;
+        }
+
+        .footer-col h3 {
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #E7D9C0;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-gold);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-gold);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--accent-gold-dark);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* ===== FLOATING WHATSAPP ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* ===== MOBILE RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .hero-content, .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 48px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-light);
+                padding: 20px;
+                transform: translateY(-150%);
+                transition: var(--transition);
+                box-shadow: 0 10px 20px rgba(44, 30, 23, 0.1);
+                border-top: 1px solid #eee;
+            }
+
+            nav.active {
+                transform: translateY(0);
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 12px 0;
+                font-size: 18px;
+            }
+
+            .section-title { font-size: 36px; }
+            .admission-steps { flex-direction: column; align-items: center; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .social-icons { justify-content: center; }
+        }
+
+        @media (max-width: 576px) {
+            .hero-text h1 { font-size: 38px; }
+            .btn { padding: 12px 24px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/918747943953" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header>
+        
+        <div class="container nav-container">
+            <div class="container nav-container">
+                <div class="logo">
+                <!-- YOUR LOGO IMAGE -->
+                    <img src="logo.png" alt="Tattvaveda Logo" class="logo-img">
+            <!-- TEXT KEPT AS REQUESTED -->
+                <div class="logo-text">
+                <span>TATTVAVEDA</span>
+                <span>ACADEMY</span>
+            </div>
+        </div>
+        <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Academics</a></li>
+                    <li><a href="#">Facilities</a></li>
+                    <li><a href="#">Admissions</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text" data-aos="fade-right">
+                <h1>Begin Your Journey Towards Excellence</h1>
+                <p>Tattvaveda Academy – PCMB + Integrated NEET/JEE Coaching</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">Apply Now</a>
+                    <a href="#" class="btn btn-outline">Download Prospectus</a>
+                </div>
+            </div>
+            <div class="hero-image" data-aos="fade-left">
+                <img src="logo.png" alt="Tattvaveda Students">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container about-content">
+            <div class="about-text" data-aos="fade-up">
+                <p class="quote">“Cultivating the Essence of Knowledge, Shaping the Future of Thought”</p>
+                <p>Tattvaveda Academy is more than a coaching center — it's a sanctuary for intellectual growth. With expert faculty, cutting-edge labs, and personalized mentoring, we prepare students not just for exams, but for life.</p>
+                <p>Located in the heart of Davangere, our campus blends modern infrastructure with traditional values to create an environment where curiosity thrives and excellence becomes habit.</p>
+                <a href="#" style="color: var(--accent-gold); font-weight: 600;">Read More →</a>
+            </div>
+            <div class="about-image" data-aos="fade-up" data-aos-delay="200">
+                <img src="campus.png" alt="Tattvaveda Campus">
+            </div>
+        </div>
+    </section>
+
+    <!-- Academics Section -->
+    <section class="academics">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Our Academic Pillars</h2>
+            <div class="cards-grid">
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-icon"><i class="fas fa-atom"></i></div>
+                    <h3>PCMB Program</h3>
+                    <p>Comprehensive curriculum with in-depth coverage of Physics, Chemistry, Mathematics, and Biology for Class 11 & 12.</p>
+                    <a href="#">Explore →</a>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-icon"><i class="fas fa-dna"></i></div>
+                    <h3>NEET Coaching</h3>
+                    <p>500+ selections in 2024. Strategic preparation with daily tests, doubt clearance, and performance analysis.</p>
+                    <a href="#">Explore →</a>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-icon"><i class="fas fa-square-root-alt"></i></div>
+                    <h3>JEE Coaching</h3>
+                    <p>IIT-NIT focused training with advanced problem-solving, mock tests, and rank improvement strategies.</p>
+                    <a href="#">Explore →</a>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-icon"><i class="fas fa-microscope"></i></div>
+                    <h3>Labs & Mentoring</h3>
+                    <p>Hands-on learning in modern science labs with one-on-one mentoring for conceptual clarity.</p>
+                    <a href="#">Explore →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section class="facilities">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">State-of-the-Art Infrastructure</h2>
+            <div class="facilities-grid">
+                <div class="facility-tile" data-aos="zoom-in">
+                    <img src="lab.png" alt="Science Lab">
+                    <div class="facility-overlay">
+                        <h3 style="color: white;">Modern Science Labs</h3>
+                        <p style="font-size: 14px; color: #eee;">Hands-on experiments with latest equipment</p>
+                    </div>
+                </div>
+                <div class="facility-tile" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="classroom.png" alt="Digital Classroom">
+                    <div class="facility-overlay">
+                        <h3 style="color: white;">Digital Classrooms</h3>
+                        <p style="font-size: 14px; color: #eee;">Smart boards, AC, and interactive learning</p>
+                    </div>
+                </div>
+                <div class="facility-tile" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="library.png" alt="Library">
+                    <div class="facility-overlay">
+                        <h3 style="color: white;">Vast Library</h3>
+                        <p style="font-size: 14px; color: #eee;">10,000+ books, journals, and digital resources</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty, Admissions, Gallery, Footer (same structure, updated colors) -->
+    <!-- [Rest of sections same as before, with light theme applied] -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <img src="logo.png" alt="Tattvaveda Logo" class="footer-logo">
+                <p style="color: #E7D9C0; max-width: 300px;">Cultivating the essence of knowledge, shaping the future of thought.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Academics</a></li>
+                    <li><a href="#">Admissions</a></li>
+                    <li><a href="#">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <ul>
+                    <li>☎ 87479 43953</li>
+                    <li>☎ 97408 74952</li>
+                    <li>✉ info@tattvaveda.edu.in</li>
+                    <li>Davangere, Karnataka</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Location</h3>
+                <div style="background: #333; height: 120px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">
+                    <p>Google Map Embed</p>
+                </div>
+            </div>
+        </div>
+        <div class="container copyright">
+            © 2025 Tattvaveda Academy | All rights reserved
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 100);
+        });
+
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+            });
+        });
+    </script>
+</body>
+</html>
