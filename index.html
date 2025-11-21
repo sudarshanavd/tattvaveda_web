@@ -34,6 +34,12 @@
             font-family: 'Montserrat', sans-serif;
             line-height: 1.7;
             overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        body.loaded {
+            opacity: 1;
         }
 
         h1, h2, h3, h4, h5 {
@@ -613,63 +619,253 @@
         }
 
         /* ===== MOBILE RESPONSIVE ===== */
-        @media (max-width: 992px) {
-            .hero-content, .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
+        /* ===== SMOOTH & FULLY RESPONSIVE (NO LAYOUT SHIFT) ===== */
+@media (max-width: 1200px) {
+    .container { width: 95%; }
+}
 
-            .hero-text h1 {
-                font-size: 48px;
-            }
+@media (max-width: 992px) {
+    /* Hero & About - Stack vertically */
+    .hero-content,
+    .about-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
 
-            .hero-buttons {
-                justify-content: center;
-            }
-        }
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 140px 0 80px;
+    }
 
-        @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            nav {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--bg-light);
-                padding: 20px;
-                transform: translateY(-150%);
-                transition: var(--transition);
-                box-shadow: 0 10px 20px rgba(44, 30, 23, 0.1);
-                border-top: 1px solid #eee;
-            }
+    .hero-text h1 {
+        font-size: 52px;
+    }
 
-            nav.active {
-                transform: translateY(0);
-            }
+    .hero-text p {
+        font-size: 20px;
+    }
 
-            nav ul {
-                flex-direction: column;
-                gap: 15px;
-            }
+    .hero-image img {
+        max-width: 80%;
+        margin: 0 auto;
+        border-width: 2px;
+    }
 
-            nav ul li a {
-                display: block;
-                padding: 12px 0;
-                font-size: 18px;
-            }
+    .hero-buttons {
+        justify-content: center;
+        gap: 15px;
+    }
 
-            .section-title { font-size: 36px; }
-            .admission-steps { flex-direction: column; align-items: center; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .social-icons { justify-content: center; }
-        }
+    /* General section spacing */
+    .about, .academics, .facilities, .faculty, .admissions, .gallery-preview {
+        padding: 90px 0;
+    }
 
-        @media (max-width: 576px) {
-            .hero-text h1 { font-size: 38px; }
-            .btn { padding: 12px 24px; font-size: 13px; }
-        }
+    .section-title {
+        font-size: 38px;
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Header & Mobile Menu */
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-container {
+        padding: 0 5%;
+    }
+
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--bg-light);
+        padding: 25px 5%;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        box-shadow: 0 10px 30px rgba(44, 30, 23, 0.12);
+        border-top: 1px solid #eee;
+    }
+
+    nav.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 14px 0;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    /* Logo smaller on mobile */
+    .logo {
+        max-width: 210px;
+    }
+    .logo-img {
+        width: 48px;
+    }
+    .logo-text span:first-child {
+        font-size: 23px;
+    }
+
+    /* Grids become single column */
+    .cards-grid,
+    .facilities-grid,
+    .faculty-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .facility-tile,
+    .gallery-item {
+        height: 260px;
+    }
+
+    .admission-steps {
+        flex-direction: column;
+        align-items: center;
+        gap: 35px;
+    }
+
+    .step {
+        text-align: center;
+        max-width: 300px;
+    }
+
+    .section-title {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        padding: 120px 0 70px;
+    }
+
+    .hero-text h1 {
+        font-size: 40px;
+        line-height: 1.2;
+    }
+
+    .hero-text p {
+        font-size: 18px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 85%;
+        max-width: 300px;
+        padding: 14px 20px;
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+
+    .about, .academics, .facilities, .faculty, .admissions, .gallery-preview {
+        padding: 70px 0;
+    }
+
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    /* WhatsApp button smaller */
+    .whatsapp-float {
+        width: 54px;
+        height: 54px;
+        font-size: 28px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 36px;
+    }
+
+    .logo {
+        max-width: 180px;
+    }
+    .logo-img {
+        width: 42px;
+    }
+    .logo-text span:first-child {
+        font-size: 20px;
+    }
+    .logo-text span:last-child {
+        font-size: 10px;
+    }
+
+    .section-title {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-text h1 {
+        font-size: 32px;
+    }
+    .btn {
+        font-size: 13px;
+        padding: 12px 18px;
+    }
+}
+
+/* PREVENT LAYOUT SHIFT ON LOAD (Critical Fix) */
+html {
+    scroll-padding-top: 100px; /* Accounts for fixed header */
+}
+
+/* Preload fonts to avoid FOUT/layout jump */
+@font-face {
+    font-family: 'Playfair Display';
+    font-display: swap;
+    src: url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap') format('woff2');
+}
+@font-face {
+    font-family: 'Montserrat';
+    font-display: swap;
+    src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap') format('woff2');
+}
     </style>
 </head>
+<script>
+    // Show page only after everything is fully loaded
+    window.addEventListener("load", () => {
+        document.body.classList.add("loaded");
+    });
+</script>
 <body>
 
     <!-- Floating WhatsApp -->
@@ -802,15 +998,14 @@
             </div>
         </div>
     </section>
-
-    <!-- Faculty, Admissions, Gallery, Footer (same structure, updated colors) -->
-    <!-- [Rest of sections same as before, with light theme applied] -->
-
     <!-- Footer -->
     <footer>
         <div class="container footer-grid">
             <div class="footer-col">
-                <img src="logo.png" alt="Tattvaveda Logo" class="footer-logo">
+                <!-- <img src="logo.png" 
+                    alt="Tattvaveda Logo" 
+                    class="footer-logo" 
+                    style="width:120px; display:block; margin:0 auto;"> -->
                 <p style="color: #E7D9C0; max-width: 300px;">Cultivating the essence of knowledge, shaping the future of thought.</p>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
